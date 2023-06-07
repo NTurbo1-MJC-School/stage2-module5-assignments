@@ -2,9 +2,10 @@ package assignments;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.StringBuilder;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
 import assignments.annotations.ListIteratorAnnotation;
@@ -20,16 +21,16 @@ public class LocalProcessor {
     private String processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
-    private static List<String> stringList = new LinkedList<>();
+    private static List<String> stringArrayList = new ArrayList<>();
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
-                          Scanner informationScanner, LinkedList<String> stringList) {
+                          Scanner informationScanner, List<String> stringList) {
         this.processorName = processorName;
         this.period = period;
         this.processorVersion = processorVersion;
         this.valueOfCheap = valueOfCheap;
         this.informationScanner = informationScanner;
-        this.stringList = stringList;
+        this.stringArrayList = stringList;
     }
 
     public LocalProcessor() {
@@ -37,9 +38,8 @@ public class LocalProcessor {
 
     @ListIteratorAnnotation
     public void listIterator(List<String> stringList) {
-        this.stringList = new LinkedList<>(stringList);
-        for (int i = 0; i < period && i < stringList.size(); i++) {
-            System.out.println(stringList.get(i).hashCode());
+        for (String str : stringList) {
+            System.out.println(str.hashCode());
         }
     }
 
@@ -49,7 +49,7 @@ public class LocalProcessor {
         for (String str : stringList) {
             fullName.append(str).append(' ');
         }
-        return fullName.toString().trim();
+        return fullName.toString();
     }
 
     @ReadFullProcessorNameAnnotation
